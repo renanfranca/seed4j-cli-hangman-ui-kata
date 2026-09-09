@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "experiment": {
+    "repository": "https://github.com/renanfranca/seed4j-cli-hangman-ui-kata",
+    "specificationPath": "SPEC.md",
+    "specificationSha256": "c41b697d7eaffc8c65f9c7662f37c24babb73a1e92886f1c5351db2e712c5416",
+    "baseBranch": "hangman-ui-kata-seed4j-base",
+    "baseCommit": "a9679d07d66cca012784b4796a8e0505cb34f8a4"
+  },
+  "run": {
+    "executionIndex": 3,
+    "alias": "sol-xhigh",
+    "branch": "hangman-ui-kata-sol-xhigh",
+    "model": "gpt-5.6-sol",
+    "reasoningEffort": "xhigh",
+    "taskId": "01a08671-38ef-7ea2-a532-bc53682dc452",
+    "taskTitle": "hangman-ui-kata-sol-xhigh",
+    "prompt": "Implement the specification in SPEC.md. A functional user interface of your choice is a mandatory deliverable. Use the already-installed Seed4J CLI tool as support.",
+    "promptSha256": "80c82afba7367009ffe60d8b1fe656c48334889eeab9c0a61a4d5b5aefe711b0",
+    "status": "passed",
+    "deliveryActor": "model",
+    "implementationCommit": "efdf2d2df9b72408a8190f5934d5c23433382f1b"
+  },
+  "seed4j": {
+    "cliVersion": "0.0.4",
+    "runtimeVersion": "2.2.0",
+    "runtimeMode": "standard",
+    "skillTreeSha256": "93b17f5b4a53d747f2b33f815984c56b297f52859b1f1825f8cce44eadba078c"
+  },
+  "validation": {
+    "command": "npm run test:coverage",
+    "exitCode": 0,
+    "summary": "17 tests passed with 100% statement, branch, function, and line coverage."
+  },
+  "transcript": {
+    "path": "CONVERSATION_TRANSCRIPT.md",
+    "source": "Codex rollout JSONL",
+    "lastOrdinal": 524,
+    "sha256": "20f9223e79080b937bb5c09da37dd58942dfb8f99d143c652dad6ddd7093d56b"
+  }
+}
