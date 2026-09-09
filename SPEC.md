@@ -1,5 +1,4 @@
-Hangman UI Kata
-================
+# Hangman UI Kata
 
 Source: [https://github.com/ardalis/kata-catalog](https://github.com/ardalis/kata-catalog)
 

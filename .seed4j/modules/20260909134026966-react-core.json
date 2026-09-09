@@ -1,11 +1,11 @@
 {
-  "module" : "react-core",
-  "date" : "2026-09-09T13:40:26.966480840Z",
-  "properties" : {
-    "endOfLine" : "lf",
-    "projectName" : "Hangman UI",
-    "nodePackageManager" : "npm",
-    "indentSize" : 2,
-    "baseName" : "hangmanui"
+  "module": "react-core",
+  "date": "2026-09-09T13:40:26.966480840Z",
+  "properties": {
+    "endOfLine": "lf",
+    "projectName": "Hangman UI",
+    "nodePackageManager": "npm",
+    "indentSize": 2,
+    "baseName": "hangmanui"
   }
 }
