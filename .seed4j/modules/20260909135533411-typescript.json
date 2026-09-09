@@ -1,0 +1,11 @@
+{
+  "module": "typescript",
+  "date": "2026-09-09T13:55:33.411238743Z",
+  "properties": {
+    "endOfLine": "lf",
+    "projectName": "Hangman UI Kata",
+    "nodePackageManager": "npm",
+    "indentSize": 2,
+    "baseName": "hangman"
+  }
+}
