@@ -6,16 +6,121 @@
   layout:decorate="~{layout/main}"
 >
   <head>
-    <title>Thymeleaf project</title>
+    <title>Hangman · Find the hidden word</title>
   </head>
   <body>
     <div layout:fragment="content">
-      <div>Welcome to your Spring Boot with Thymeleaf project!</div>
-      <!-- seed4j-needle-thymeleaf-index-content -->
+      <header class="topbar">
+        <a class="brand" th:href="@{/}" aria-label="Hangman home">
+          <span class="brand-mark">H</span>
+          <span>Hangman</span>
+        </a>
+        <span class="topbar-note">A little word game</span>
+      </header>
+
+      <main class="game-shell">
+        <section class="intro" aria-labelledby="page-title">
+          <p class="eyebrow">Word guessing game</p>
+          <h1 id="page-title">Find the hidden word<span class="accent">.</span></h1>
+          <p class="intro-copy">Reveal every letter before the misses run out. Trust your instincts, then make your next guess count.</p>
+        </section>
+
+        <div class="game-layout">
+          <section class="board-card" aria-labelledby="word-heading">
+            <div class="card-heading">
+              <div>
+                <p class="card-kicker">The word</p>
+                <h2 id="word-heading">What could it be?</h2>
+              </div>
+              <span class="status-pill" th:classappend="${game.inProgress ? 'status-playing' : game.won ? 'status-won' : 'status-lost'}">
+                <span class="status-dot"></span>
+                <span th:if="${game.inProgress}">In progress</span>
+                <span th:if="${game.won}">You won</span>
+                <span th:if="${game.lost}">Round over</span>
+              </span>
+            </div>
+
+            <div class="word-stage" th:classappend="${game.lost ? 'word-revealed' : ''}" aria-live="polite">
+              <span class="word-display" th:text="${game.lost ? game.secretWord : game.maskedWord}">------</span>
+              <span class="word-caption" th:if="${game.lost}">The hidden word was revealed</span>
+              <span class="word-caption" th:if="${!game.lost}">Each dash is one letter</span>
+            </div>
+
+            <div class="guess-area" th:if="${game.inProgress}">
+              <form class="guess-form" th:action="@{/guess}" method="post">
+                <label for="letter">Your next letter</label>
+                <div class="input-row">
+                  <input id="letter" name="letter" type="text" maxlength="1" pattern="[A-Za-z]" inputmode="text" autocomplete="off" autocapitalize="characters" placeholder="A" data-guess-input autofocus required>
+                  <button class="primary-button" type="submit">Guess letter <span aria-hidden="true">→</span></button>
+                </div>
+              </form>
+              <p class="helper-text">Choose one letter from A to Z.</p>
+            </div>
+
+            <div class="feedback" th:if="${lastResult != null}" th:classappend="${lastResult.name() == 'CorrectGuess' ? 'feedback-correct' : lastResult.name() == 'IncorrectGuess' ? 'feedback-incorrect' : 'feedback-neutral'}" role="status">
+              <span class="feedback-icon" aria-hidden="true" th:text="${lastResult.name() == 'CorrectGuess' ? '✓' : lastResult.name() == 'IncorrectGuess' ? '!' : 'i'}">i</span>
+              <span th:if="${lastResult.name() == 'CorrectGuess'}">Nice one — that letter is in the word.</span>
+              <span th:if="${lastResult.name() == 'IncorrectGuess'}">Not this time — that letter is not in the word.</span>
+              <span th:if="${lastResult.name() == 'DuplicateGuess'}">You already tried that letter. Give another one a shot.</span>
+              <span th:if="${lastResult.name() == 'InvalidGuess'}">Enter one letter from A to Z.</span>
+            </div>
+
+            <div class="feedback feedback-neutral" th:if="${roundMessage != null}" role="status">
+              <span class="feedback-icon" aria-hidden="true">i</span>
+              <span th:text="${roundMessage}">This round is already complete.</span>
+            </div>
+
+            <div class="result-panel result-won" th:if="${game.won}" role="status">
+              <span class="result-icon" aria-hidden="true">✦</span>
+              <div>
+                <strong>Word revealed!</strong>
+                <p>You found it with room to spare. Nicely played.</p>
+              </div>
+            </div>
+
+            <div class="result-panel result-lost" th:if="${game.lost}" role="status">
+              <span class="result-icon" aria-hidden="true">×</span>
+              <div>
+                <strong>That round got away.</strong>
+                <p>The word was <b th:text="${game.secretWord}">SPRING</b>. Try a fresh round?</p>
+              </div>
+            </div>
+          </section>
+
+          <aside class="details-column" aria-label="Game details">
+            <section class="stat-card guesses-card">
+              <div class="stat-card-heading">
+                <span class="card-kicker">Misses remaining</span>
+                <span class="stat-flag" aria-hidden="true">⌁</span>
+              </div>
+              <p class="guesses-number" th:classappend="${game.guessesLeft <= 2 ? 'number-low' : ''}"><span th:text="${game.guessesLeft}">6</span><small> / <span th:text="${game.incorrectGuessLimit}">6</span></small></p>
+              <div class="meter" role="progressbar" aria-label="Misses remaining" th:attr="aria-valuenow=${game.guessesLeft},aria-valuemin=0,aria-valuemax=${game.incorrectGuessLimit}">
+                <span th:style="|width: ${game.guessesLeft * 100 / game.incorrectGuessLimit}%;|"></span>
+              </div>
+              <p class="stat-caption">Incorrect guesses left before the round ends.</p>
+            </section>
+
+            <section class="stat-card wrong-card">
+              <div class="stat-card-heading">
+                <span class="card-kicker">Letters missed</span>
+                <span class="stat-count" th:text="${game.incorrectGuesses.size()}">0</span>
+              </div>
+              <div class="wrong-letters" th:if="${!game.incorrectGuesses.isEmpty()}" aria-label="Incorrectly guessed letters">
+                <span th:each="letter : ${game.incorrectGuesses}" th:text="${letter}">X</span>
+              </div>
+              <p class="empty-state" th:if="${game.incorrectGuesses.isEmpty()}">No misses yet. You are off to a clean start.</p>
+            </section>
+
+            <form th:action="@{/new-game}" method="post">
+              <button class="secondary-button" type="submit"><span aria-hidden="true">↻</span> Start a new game</button>
+            </form>
+          </aside>
+        </div>
+
+        <p class="game-note"><span aria-hidden="true">✦</span> Tip: common vowels are a good place to start.</p>
+      </main>
+
+      <footer class="footer">Built for the Hangman UI Kata · <span>Have fun guessing</span></footer>
     </div>
-    <th:block layout:fragment="script-content">
-      <!-- Add additional scripts there that are only needed for this page (Application wide scripts should be added in layout/main.html) --->
-      <!-- seed4j-needle-thymeleaf-index-script -->
-    </th:block>
   </body>
 </html>
