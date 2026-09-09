@@ -16,17 +16,29 @@ You will only need to run this command when dependencies change in [package.json
 npm install
 ```
 
-## Local environment
+## Play locally
 
+Start the Vite development server:
+
+```bash
+npm start
+```
+
+Then open [http://localhost:9000](http://localhost:9000). The game chooses a new word for each round and accepts guesses
+from either the on-screen keyboard or the letter input.
+
+## Quality checks
+
+```bash
+npm test
+npm run lint
+npm run prettier:check
+npm run build
+```
+
+The game rules live in the framework-independent `Hangman` class under `src/main/webapp/app/game/domain`. The React UI
+renders a masked word, incorrect guesses, remaining attempts, the progressive drawing, and explicit win/loss states.
 
 <!-- seed4j-needle-localEnvironment -->
-
-## Start up
-
-
 <!-- seed4j-needle-startupCommand -->
-
-## Documentation
-
-
 <!-- seed4j-needle-documentation -->

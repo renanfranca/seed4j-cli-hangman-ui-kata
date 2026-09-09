@@ -17,10 +17,10 @@
     "prettier:format": "prettier --write .",
     "preview": "vite preview",
     "start": "vite",
-    "test": "npm run watch:test",
+    "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "watch": "npm-run-all --parallel watch:*",
-    "watch:test": "vitest --",
+    "watch:test": "vitest",
     "watch:tsc": "tsc --noEmit --watch"
   },
   "dependencies": {
