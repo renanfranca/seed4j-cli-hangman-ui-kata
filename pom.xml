@@ -42,6 +42,15 @@
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-thymeleaf</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>nz.net.ultraq.thymeleaf</groupId>
+      <artifactId>thymeleaf-layout-dialect</artifactId>
+      <version>${thymeleaf-layout-dialect.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
@@ -61,6 +70,7 @@
     <surefire-plugin.version>3.5.4</surefire-plugin.version>
     <failsafe-plugin.version>3.5.4</failsafe-plugin.version>
     <spring-boot.version>4.0.1</spring-boot.version>
+    <thymeleaf-layout-dialect.version>3.4.0</thymeleaf-layout-dialect.version>
   </properties>
 
   <build>
