@@ -31,9 +31,16 @@ npm install
 ## Start up
 
 ```bash
-./mvnw
+./mvnw spring-boot:run
 ```
 
+Then open [http://localhost:8080](http://localhost:8080). Each round starts with the word `SPRING` hidden, and **Start a new game** cycles to another word.
+
+Run the automated tests with:
+
+```bash
+./mvnw test
+```
 
 <!-- seed4j-needle-startupCommand -->
 
