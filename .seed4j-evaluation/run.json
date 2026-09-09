@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "experiment": {
+    "repository": "https://github.com/renanfranca/seed4j-cli-hangman-ui-kata",
+    "specificationPath": "SPEC.md",
+    "specificationSha256": "c41b697d7eaffc8c65f9c7662f37c24babb73a1e92886f1c5351db2e712c5416",
+    "baseBranch": "hangman-ui-kata-seed4j-base",
+    "baseCommit": "a9679d07d66cca012784b4796a8e0505cb34f8a4"
+  },
+  "run": {
+    "executionIndex": 1,
+    "alias": "luna-xhigh",
+    "branch": "hangman-ui-kata-luna-xhigh",
+    "model": "gpt-5.6-luna",
+    "reasoningEffort": "xhigh",
+    "taskId": "01a08652-a2a4-7c61-a0b0-07cee3c4bea7",
+    "taskTitle": "hangman-ui-kata-luna-xhigh",
+    "prompt": "Implement the specification in SPEC.md. A functional user interface of your choice is a mandatory deliverable. Use the already-installed Seed4J CLI tool as support.",
+    "promptSha256": "80c82afba7367009ffe60d8b1fe656c48334889eeab9c0a61a4d5b5aefe711b0",
+    "status": "passed",
+    "deliveryActor": "model",
+    "implementationCommit": "3a3de0969e87f08d845e5702abeee4227b4c42c3"
+  },
+  "seed4j": {
+    "cliVersion": "0.0.4",
+    "runtimeVersion": "2.2.0",
+    "runtimeMode": "standard",
+    "skillTreeSha256": "93b17f5b4a53d747f2b33f815984c56b297f52859b1f1825f8cce44eadba078c"
+  },
+  "validation": {
+    "command": "./mvnw verify -q",
+    "exitCode": 0,
+    "summary": "Coordinator validation exited 0; Maven unit and integration test phases passed."
+  },
+  "transcript": {
+    "path": "CONVERSATION_TRANSCRIPT.md",
+    "source": "Codex rollout JSONL",
+    "lastOrdinal": 507,
+    "sha256": "c3d2f34a759f023b45d993efda454deefee573c39d020d6b0711e4a2b6eacd3b"
+  }
+}
